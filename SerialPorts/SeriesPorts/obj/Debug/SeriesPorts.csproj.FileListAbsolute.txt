@@ -1,0 +1,13 @@
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\bin\Debug\SeriesPorts.exe.config
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\bin\Debug\SeriesPorts.exe
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\bin\Debug\SeriesPorts.pdb
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\MainWindow.g.cs
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\App.g.cs
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts_MarkupCompile.cache
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts_MarkupCompile.lref
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\MainWindow.baml
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts.g.resources
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts.Properties.Resources.resources
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts.csproj.GenerateResource.Cache
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts.exe
+d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts.pdb

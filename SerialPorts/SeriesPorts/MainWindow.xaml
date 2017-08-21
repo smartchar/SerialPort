@@ -1,0 +1,96 @@
+﻿<Window x:Name="SerialCom" x:Class="SeriesPorts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SeriesPorts"
+        mc:Ignorable="d"
+        Title="SerialCom" Height="500" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="configure" Margin="0" FontFamily="Source Code Pro" FontStyle="Italic" Grid.ColumnSpan="3">
+            <Grid Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="COM" Margin="0" FontSize="14"/>
+                <ComboBox x:Name="COMcbx" Margin="4,2" Grid.Row="1" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label Content="Baudrate" Margin="0" FontSize="14" Grid.Column="1"/>
+                <ComboBox x:Name="Baucbx" Margin="4,2" Grid.Row="1" Grid.Column="1" Initialized="Baucbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label Content="DataBits" Margin="0" FontSize="14" Grid.Column="2"/>
+                <ComboBox x:Name="Datcbx" Margin="4,2" Grid.Row="1" Grid.Column="2" Initialized="Datcbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label Content="StopBits" Margin="0" FontSize="14" Grid.Column="3"/>
+                <ComboBox x:Name="Stopcbx" Margin="4,2" Grid.Row="1" Grid.Column="3" Initialized="Stopcbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label Content="Parity" Margin="0" FontSize="14" Grid.Column="4"/>
+                <ComboBox x:Name="Parcbx" Margin="4,2" Grid.Row="1" Grid.Column="4" Initialized="Parcbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label Content="Flow" Margin="0" FontSize="14" Grid.Column="5"/>
+                <ComboBox x:Name="Flocbx" Margin="4,2" Grid.Row="1" Grid.Column="5" Initialized="Flocbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
+                <Button x:Name="ocbtn" Content="OPEN" Margin="4,2" Grid.Column="7" Grid.RowSpan="2" Click="ocbtn_Click" FontSize="14"/>
+                <Button x:Name="Refbtn" Content="Refresh" Margin="4,2" Grid.Column="6" Grid.RowSpan="2" Click="Refbtn_Click" FontSize="14"/>
+            </Grid>
+        </GroupBox>
+        <StatusBar Margin="0" Grid.Row="5" Grid.ColumnSpan="3" Initialized="StatusBar_Initialized">
+            <TextBlock x:Name="statustbk" TextWrapping="Wrap" Text="TextBlock" FontFamily="Source Code Pro" FontStyle="Italic" Margin="5,0,0,0" FontSize="14"/>
+            <Separator Margin="0" FontSize="14"/>
+            <Label Content="Received:" Margin="0" FontFamily="Source Code Pro" FontStyle="Italic" FontSize="14"/>
+            <TextBlock x:Name="rectbx" TextWrapping="Wrap" Text="TextBlock" FontFamily="Source Code Pro" FontStyle="Italic" FontSize="14"/>
+            <Separator Margin="30,0,0,0" FontSize="14"/>
+            <Label Content="Sent:" FontFamily="Source Code Pro" Margin="0" FontStyle="Italic" FontSize="14"/>
+            <TextBlock x:Name="senttbk" TextWrapping="Wrap" Text="TextBlock" FontFamily="Source Code Pro" FontStyle="Italic" FontSize="14"/>
+            <Separator Margin="10,0,0,0" FontSize="14" HorizontalAlignment="Left"/>
+            <TextBox x:Name="date1tbx" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left"/>
+            <TextBox x:Name="date2tbx" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left"/>
+        </StatusBar>
+        <GroupBox x:Name="recGroup" Header="receive" Margin="0" Grid.Row="1" Grid.RowSpan="4" FontFamily="Source Code Pro" FontStyle="Italic" Initialized="recGroup_Initialized">
+            <RichTextBox x:Name="rtb1" Margin="0" Background="Black" Foreground="White" FontSize="16" FontStyle="Normal" FontFamily="Source Code Pro Light" ScrollViewer.CanContentScroll="True" IsReadOnly="True" FontWeight="Light" FontStretch="UltraExpanded" VerticalScrollBarVisibility="Auto">
+                <FlowDocument  LineHeight="2">
+                    <Paragraph>
+                        <Run Text="RichTextBox"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </GroupBox>
+        <GroupBox x:Name="sendGroup" Grid.Column="1" Header="send" Margin="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" FontStyle="Italic" Initialized="sendGroup_Initialized">
+            <Grid Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="sendtbx1" Margin="0,5" TextWrapping="Wrap" Text="TextBox" FontStyle="Normal" VerticalContentAlignment="Center"/>
+                <Button x:Name="sendbtn1" Content="SEND" Grid.Column="1" Margin="0,5" FontStyle="Italic" Click="sendbtn1_Click"/>
+                <TextBox x:Name="sendtbx2" Margin="0,5" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" FontStyle="Normal" VerticalContentAlignment="Center"/>
+                <Button x:Name="sendbtn2" Content="SEND" Grid.Column="1" Margin="0,5" Grid.Row="1" FontStyle="Italic"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>
