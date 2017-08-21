@@ -1,23 +1,32 @@
-﻿<Window x:Name="SerialCom" x:Class="SeriesPorts.MainWindow"
+﻿<Controls:MetroWindow x:Name="SerialCom" x:Class="SeriesPorts.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeriesPorts"
         mc:Ignorable="d"
-        Title="SerialCom" Height="500" Width="800">
-    <Grid>
+        Title="SerialCom" Height="600" Width="800"                     
+        
+        BorderThickness="0" 
+        GlowBrush="Black"
+        ResizeMode="CanResizeWithGrip"
+
+        WindowTransitionsEnabled="False"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="6*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <GroupBox Header="configure" Margin="0" FontFamily="Source Code Pro" FontStyle="Italic" Grid.ColumnSpan="3">
@@ -36,61 +45,86 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label Content="COM" Margin="0" FontSize="14"/>
-                <ComboBox x:Name="COMcbx" Margin="4,2" Grid.Row="1" FontSize="14" VerticalContentAlignment="Center"/>
-                <Label Content="Baudrate" Margin="0" FontSize="14" Grid.Column="1"/>
-                <ComboBox x:Name="Baucbx" Margin="4,2" Grid.Row="1" Grid.Column="1" Initialized="Baucbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
-                <Label Content="DataBits" Margin="0" FontSize="14" Grid.Column="2"/>
-                <ComboBox x:Name="Datcbx" Margin="4,2" Grid.Row="1" Grid.Column="2" Initialized="Datcbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
-                <Label Content="StopBits" Margin="0" FontSize="14" Grid.Column="3"/>
-                <ComboBox x:Name="Stopcbx" Margin="4,2" Grid.Row="1" Grid.Column="3" Initialized="Stopcbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
-                <Label Content="Parity" Margin="0" FontSize="14" Grid.Column="4"/>
-                <ComboBox x:Name="Parcbx" Margin="4,2" Grid.Row="1" Grid.Column="4" Initialized="Parcbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
-                <Label Content="Flow" Margin="0" FontSize="14" Grid.Column="5"/>
-                <ComboBox x:Name="Flocbx" Margin="4,2" Grid.Row="1" Grid.Column="5" Initialized="Flocbx_Initialized" FontSize="14" VerticalContentAlignment="Center"/>
-                <Button x:Name="ocbtn" Content="OPEN" Margin="4,2" Grid.Column="7" Grid.RowSpan="2" Click="ocbtn_Click" FontSize="14"/>
-                <Button x:Name="Refbtn" Content="Refresh" Margin="4,2" Grid.Column="6" Grid.RowSpan="2" Click="Refbtn_Click" FontSize="14"/>
+                <Label Content="COM" Margin="0" FontStyle="Italic" FontFamily="Segoe UI" HorizontalContentAlignment="Center" Foreground="Black" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="COMcbx" Margin="4,2" VerticalContentAlignment="Center" Grid.Row="1" FontFamily="Segoe UI" FontStyle="Italic" Foreground="Black" HorizontalContentAlignment="Center"/>
+                <Label Content="Baudrate" Margin="0" Grid.Column="1" FontStyle="Italic" FontFamily="Segoe UI" HorizontalContentAlignment="Center" Foreground="Black" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="Baucbx" Margin="4,2" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" FontFamily="Segoe UI" FontStyle="Italic" Foreground="Black" HorizontalContentAlignment="Center"/>
+                <Label Content="DataBits" Margin="0" Grid.Column="2" FontStyle="Italic" FontFamily="Segoe UI" HorizontalContentAlignment="Center" Foreground="Black" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="Datcbx" Margin="4,2" Grid.Row="1" Grid.Column="2" VerticalContentAlignment="Center" FontFamily="Segoe UI" FontStyle="Italic" Foreground="Black" HorizontalContentAlignment="Center"/>
+                <Label Content="StopBits" Margin="0" Grid.Column="3" FontStyle="Italic" FontFamily="Segoe UI" HorizontalContentAlignment="Center" Foreground="Black" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="Stopcbx" Margin="4,2" Grid.Row="1" Grid.Column="3" VerticalContentAlignment="Center" FontFamily="Segoe UI" FontStyle="Italic" Foreground="Black" HorizontalContentAlignment="Center"/>
+                <Label Content="Parity" Margin="0" Grid.Column="4" FontStyle="Italic" FontFamily="Segoe UI" HorizontalContentAlignment="Center" Foreground="Black" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="Parcbx" Margin="4,2" Grid.Row="1" Grid.Column="4" VerticalContentAlignment="Center" FontFamily="Segoe UI" FontStyle="Italic" Foreground="Black" HorizontalContentAlignment="Center"/>
+                <Label Content="Handshake" Margin="0" Grid.Column="5" FontStyle="Italic" FontFamily="Segoe UI" HorizontalContentAlignment="Center" Foreground="Black" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="Handcbx" Margin="4,2" Grid.Row="1" Grid.Column="5" VerticalContentAlignment="Center" FontFamily="Segoe UI" FontStyle="Italic" Foreground="Black"/>
+                <Button x:Name="ocbtn" Content="OPEN" Margin="4,2" Grid.Column="7" Grid.RowSpan="2" Click="ocbtn_Click" FontSize="12" FontWeight="Normal" FontStyle="Italic" FontFamily="Segoe UI" Foreground="Black"/>
+                <Button x:Name="Refbtn" Content="Refresh" Margin="4,2" Grid.Column="6" Grid.RowSpan="2" Click="Refbtn_Click" FontSize="12" FontWeight="Normal" FontStyle="Italic" FontFamily="Segoe UI" Foreground="Black" />
             </Grid>
         </GroupBox>
-        <StatusBar Margin="0" Grid.Row="5" Grid.ColumnSpan="3" Initialized="StatusBar_Initialized">
-            <TextBlock x:Name="statustbk" TextWrapping="Wrap" Text="TextBlock" FontFamily="Source Code Pro" FontStyle="Italic" Margin="5,0,0,0" FontSize="14"/>
-            <Separator Margin="0" FontSize="14"/>
-            <Label Content="Received:" Margin="0" FontFamily="Source Code Pro" FontStyle="Italic" FontSize="14"/>
-            <TextBlock x:Name="rectbx" TextWrapping="Wrap" Text="TextBlock" FontFamily="Source Code Pro" FontStyle="Italic" FontSize="14"/>
-            <Separator Margin="30,0,0,0" FontSize="14"/>
-            <Label Content="Sent:" FontFamily="Source Code Pro" Margin="0" FontStyle="Italic" FontSize="14"/>
-            <TextBlock x:Name="senttbk" TextWrapping="Wrap" Text="TextBlock" FontFamily="Source Code Pro" FontStyle="Italic" FontSize="14"/>
-            <Separator Margin="10,0,0,0" FontSize="14" HorizontalAlignment="Left"/>
-            <TextBox x:Name="date1tbx" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left"/>
-            <TextBox x:Name="date2tbx" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Left"/>
-        </StatusBar>
-        <GroupBox x:Name="recGroup" Header="receive" Margin="0" Grid.Row="1" Grid.RowSpan="4" FontFamily="Source Code Pro" FontStyle="Italic" Initialized="recGroup_Initialized">
-            <RichTextBox x:Name="rtb1" Margin="0" Background="Black" Foreground="White" FontSize="16" FontStyle="Normal" FontFamily="Source Code Pro Light" ScrollViewer.CanContentScroll="True" IsReadOnly="True" FontWeight="Light" FontStretch="UltraExpanded" VerticalScrollBarVisibility="Auto">
-                <FlowDocument  LineHeight="2">
-                    <Paragraph>
-                        <Run Text="RichTextBox"/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-        </GroupBox>
-        <GroupBox x:Name="sendGroup" Grid.Column="1" Header="send" Margin="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" FontStyle="Italic" Initialized="sendGroup_Initialized">
+        <GroupBox x:Name="recGroup" Header="receive" Margin="0" Grid.Row="1" Grid.RowSpan="4" FontFamily="Source Code Pro" FontStyle="Italic" BorderBrush="{x:Null}">
             <Grid Margin="0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="sendtbx1" Margin="0,5" TextWrapping="Wrap" Text="TextBox" FontStyle="Normal" VerticalContentAlignment="Center"/>
-                <Button x:Name="sendbtn1" Content="SEND" Grid.Column="1" Margin="0,5" FontStyle="Italic" Click="sendbtn1_Click"/>
-                <TextBox x:Name="sendtbx2" Margin="0,5" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" FontStyle="Normal" VerticalContentAlignment="Center"/>
-                <Button x:Name="sendbtn2" Content="SEND" Grid.Column="1" Margin="0,5" Grid.Row="1" FontStyle="Italic"/>
+                <RichTextBox x:Name="rtb1" Margin="0" Background="White" Foreground="White" FontSize="16" FontStyle="Normal" FontFamily="Source Code Pro Light" ScrollViewer.CanContentScroll="True" IsReadOnly="True" FontWeight="Light" FontStretch="UltraExpanded" VerticalScrollBarVisibility="Auto" Grid.RowSpan="4" Grid.ColumnSpan="4" Grid.Row="1">
+                    <FlowDocument  LineHeight="2">
+                        <Paragraph>
+                            <Run Text="RichTextBox"/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <RadioButton x:Name="rehex" Content="Display Hex" Margin="2,0,2,8" FontSize="10"/>
+                <RadioButton x:Name="reasc" Margin="2,0,2,8" Grid.Column="1" Content="Dispaly ASCII" FontSize="10"/>
+                <Button x:Name="clrbtn" Content="Clear" Margin="4.4,2,10,4" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" MinHeight="10" FontSize="8" Click="clrbtn_Click"/>
             </Grid>
         </GroupBox>
+        <GroupBox x:Name="sendGroup" Grid.Column="1" Header="send" Margin="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="4" FontStyle="Italic" Background="#CC119EDA" BorderBrush="{x:Null}" FontFamily="Source Code Pro">
+            <Grid Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="sehex" Content="Send Hex" Margin="0" Width="100" Grid.ColumnSpan="2" FontSize="10"/>
+                <RadioButton x:Name="seas" Content="Send ASCII" Margin="0" Width="100" Grid.Column="2" Grid.ColumnSpan="2" FontSize="10"/>
+                <TextBox x:Name="sendtbx1" Margin="0,5,5,5" TextWrapping="Wrap" Text="TextBox" FontStyle="Normal" VerticalContentAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3"/>
+                <Button x:Name="sendbtn1" Content="SEND" Grid.Column="4" Margin="0,5" FontStyle="Italic" Click="sendbtn1_Click" FontWeight="Normal" FontFamily="Source Code Pro" Grid.Row="1"/>
+                <TextBox x:Name="sendtbx2" Margin="0,5,5,5" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" FontStyle="Normal" VerticalContentAlignment="Center" Grid.ColumnSpan="3"/>
+                <Button x:Name="sendbtn2" Content="SEND" Grid.Column="4" Margin="0,5" Grid.Row="2" FontStyle="Italic" FontWeight="Normal" FontFamily="Source Code Pro" Click="sendbtn2_Click"/>
+            </Grid>
+        </GroupBox>
+        <Rectangle Margin="0" Grid.Row="5" Fill="#FFF4F4F5" d:IsHidden="True"/>
+        <Grid x:Name="stagrid" Margin="0" Grid.Row="6" Grid.ColumnSpan="3" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="contbx" Margin="0" TextWrapping="Wrap" Text="TextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="recetbx" Margin="0" TextWrapping="Wrap" Text="TextBox" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="sendtbx" Margin="0" TextWrapping="Wrap" Text="TextBox" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="timetbx" Margin="0" TextWrapping="Wrap" Text="TextBox" Grid.Column="3" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        </Grid>
 
     </Grid>
-</Window>
+
+</Controls:MetroWindow>

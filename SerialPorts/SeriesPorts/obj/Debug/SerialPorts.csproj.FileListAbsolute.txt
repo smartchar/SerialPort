@@ -12,3 +12,22 @@ d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\Seria
 d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts.exe
 d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SeriesPorts.pdb
 d:\documents\visual studio 2017\Projects\SeriesPorts\SeriesPorts\obj\Debug\SerialPorts.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\SeriesPorts.exe.config
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\SeriesPorts.exe
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\SeriesPorts.pdb
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MahApps.Metro.dll
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\System.Windows.Interactivity.dll
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MahApps.Metro.pdb
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MahApps.Metro.xml
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\MainWindow.g.cs
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\App.g.cs
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts_MarkupCompile.cache
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts_MarkupCompile.lref
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\App.baml
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\MainWindow.baml
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts.g.resources
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts.Properties.Resources.resources
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SerialPorts.csproj.GenerateResource.Cache
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts.exe
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts.pdb
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SerialPorts.csprojResolveAssemblyReference.cache
