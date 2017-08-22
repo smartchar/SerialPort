@@ -31,3 +31,8 @@ D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SerialPorts.csp
 D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts.exe
 D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SeriesPorts.pdb
 D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\obj\Debug\SerialPorts.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MaterialDesignColors.dll
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\Documents\GitHub\SerialPort\SerialPorts\SeriesPorts\bin\Debug\MaterialDesignThemes.MahApps.dll

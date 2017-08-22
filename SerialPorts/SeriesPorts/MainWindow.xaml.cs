@@ -16,7 +16,6 @@ using System.IO.Ports;
 using System.Windows.Threading;
 using MahApps.Metro.Controls;
 
-
 /*
 Reference:
 [Serial Port Introduction]https://www.codeproject.com/Articles/678025/Serial-Comms-in-Csharp-for-Beginners
@@ -33,7 +32,7 @@ namespace SeriesPorts
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
     /// 
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow 
     {
         ComController ComCtr ;
         private DispatcherTimer ShowTimer;
@@ -110,9 +109,12 @@ namespace SeriesPorts
 
             this.rtb1.Document.Blocks.Clear();
             rtb1.AppendText("\n");
-
+            contbx.Text = "Wait..";
             sendtbx.Text = "Sent:" + sndCount.ToString();
             recetbx.Text = "Received:" + recCount.ToString();
+
+            rehex.IsChecked = true;
+            sehex.IsChecked = true;
 
         }
 
@@ -133,8 +135,10 @@ namespace SeriesPorts
                 for (int i = 0; i < ArrayComPortsNames.Length; i++)
                 {
                     COMcbx.Items.Add(ArrayComPortsNames[i]);
+                    
                 }
-                COMcbx.Text = ArrayComPortsNames[0];
+                COMcbx.SelectedIndex = 0;
+               
                 ocbtn.IsEnabled = true;
             }
         }
@@ -160,7 +164,7 @@ namespace SeriesPorts
 
         private void ocbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToString(ocbtn.Content) == "OPEN")
+            if (Convert.ToString(ocbtn.Content) == "Open")
             {
                 ComCtr.OpenCom(
                     COMcbx.Text,
@@ -171,7 +175,7 @@ namespace SeriesPorts
                     Handcbx.Text
                     );
             }
-            else if (Convert.ToString(ocbtn.Content) == "CLOSE")
+            else if (Convert.ToString(ocbtn.Content) == "Close")
             {
                 ComCtr.CloseCom();
             }
@@ -179,8 +183,8 @@ namespace SeriesPorts
 
         public void method_OpenCom(Object sender, ComController.SerialPortEventArgs e)
         {
-            ocbtn.Content = "CLOSE";
-            contbx.Text = "Connected";
+            ocbtn.Content = "Close";
+            contbx.Text = COMcbx.Text + " Opened !";
             sendbtn1.IsEnabled = true;
             sendbtn2.IsEnabled = true;
         }
@@ -188,8 +192,8 @@ namespace SeriesPorts
 
         public void method_CloseCom(Object sender, ComController.SerialPortEventArgs e)
         {
-            ocbtn.Content = "OPEN";
-            contbx.Text = "Disconnected";
+            ocbtn.Content = "Open";
+            contbx.Text = COMcbx.Text + " Closed !";
             sendbtn1.IsEnabled = false;
             sendbtn2.IsEnabled = false;
 
@@ -199,15 +203,34 @@ namespace SeriesPorts
 
         public void method_RecCom(Object sender, ComController.SerialPortEventArgs e)
         {
+            string DataBuffer = null;
+            byte []b0;
 
             this.Dispatcher.Invoke(new Action(() => {
 
                 TextRange rangeOfWord = new TextRange(rtb1.Document.ContentEnd, rtb1.Document.ContentEnd);
-                rangeOfWord.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss.fff") + " [RX] - ";
+                rangeOfWord.Text = DateTime.Now.ToString("hh:mm:ss.fff") + " [RX] - ";
                 rangeOfWord.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Green);
 
                 rangeOfWord = new TextRange(rtb1.Document.ContentEnd, rtb1.Document.ContentEnd);
-                rangeOfWord.Text = Encoding.Default.GetString(e.receivedBytes);
+
+                b0 = e.receivedBytes;
+                if (rehex.IsChecked == true)
+                {
+                    DataBuffer = BitConverter.ToString(b0);
+                }
+                else
+                {
+                    DataBuffer = Encoding.Default.GetString(b0);
+                    Int32 slen = DataBuffer.Length;
+                    for (int i = 0; i < slen - 1; i++)
+                    {
+                        DataBuffer = DataBuffer.Insert(2 * i + 1, "-");
+
+                    }
+                }
+                rangeOfWord.Text = DataBuffer;
+
                 rangeOfWord.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.DarkOrange);
 
                 rtb1.AppendText("\n");
@@ -226,7 +249,50 @@ namespace SeriesPorts
             string DataBuffer = null;
             if (btn.Name == "sendbtn1")
             {
-                 DataBuffer = sendtbx1.Text;
+                if (sehex.IsChecked == true)
+                {
+                    string t0 = sendtbx1.Text;
+                    string t1 = sendtbx1.Text.Replace("-", "");
+                    byte[] t2 = ConvertMethod.str2hex(t1);
+                    ComCtr.ComSend(t2, 0, t2.Length);
+
+                    if (rehex.IsChecked == true)
+                    {
+                        DataBuffer = t0;
+
+                    }
+                    else
+                    {
+                        DataBuffer = Encoding.ASCII.GetString(t2);
+                        Int32 slen = DataBuffer.Length;
+                        for (int i = 0; i < slen - 1; i++)
+                        {
+                            DataBuffer = DataBuffer.Insert(2*i + 1, "-");
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    string t0 = sendtbx1.Text;
+                    string t1 = sendtbx1.Text.Replace("-", "");
+                    ComCtr.ComSend(t1);
+
+                    if (rehex.IsChecked == true)
+                    {
+                        byte[] tmp = Encoding.ASCII.GetBytes(t1);
+                        string str = BitConverter.ToString(tmp);
+                        DataBuffer = str;
+                    }
+                    else
+                    {
+                        DataBuffer = t0;
+
+                    }
+
+
+                }
 
             }
             else if (btn.Name == "sendbtn2")
@@ -234,6 +300,7 @@ namespace SeriesPorts
                  DataBuffer = sendtbx2.Text;
 
             }
+            /*
             if (sehex.IsChecked == true)
             {
                 byte[] data = new byte[DataBuffer.Length];
@@ -249,13 +316,13 @@ namespace SeriesPorts
                 ComCtr.ComSend(DataBuffer);
 
             }
-
+            */
             TextRange rangeOfWord = new TextRange(rtb1.Document.ContentEnd, rtb1.Document.ContentEnd);
-            rangeOfWord.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss.fff") + " [TX] - ";
+            rangeOfWord.Text = DateTime.Now.ToString("hh:mm:ss.fff") + " [TX] - ";
             rangeOfWord.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Green);
 
             rangeOfWord = new TextRange(rtb1.Document.ContentEnd, rtb1.Document.ContentEnd);
-            rangeOfWord.Text = DateTime.Now.ToString(DataBuffer);
+            rangeOfWord.Text = DataBuffer;
             rangeOfWord.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.SteelBlue);
 
             rtb1.AppendText("\n");
@@ -280,6 +347,43 @@ namespace SeriesPorts
 
 
 
+        }
+
+
+        private void sendtbx1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (sehex.IsChecked == true)
+            {
+                if (sendtbx1.Text.Length == 0)
+                    return;
+                else
+                {
+                    if (sendtbx1.Text[sendtbx1.Text.Length - 1] == '-')
+                        return;
+                    else
+                    {
+                        string sText = sendtbx1.Text.Replace("-", "");
+                        if ((sText.Length != 0) && (sText.Length % 2 == 0))
+                            sendtbx1.AppendText("-");
+                        sendtbx1.Select(sendtbx1.Text.Length, 0);
+                    }
+                }
+            }
+            else
+            {
+                if (sendtbx1.Text.Length == 0)
+                    return;
+                else
+                {
+                    if (sendtbx1.Text[sendtbx1.Text.Length - 1] == '-')
+                        return;
+                    else
+                    {
+                            sendtbx1.AppendText("-");
+                        sendtbx1.Select(sendtbx1.Text.Length, 0);
+                    }
+                }
+            }
         }
     }
 
